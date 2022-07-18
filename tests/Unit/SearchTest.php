@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class SearchTest extends TestCase
 {
@@ -10,7 +10,7 @@ class SearchTest extends TestCase
 
     public function search_returns_data()
     {
-        $response = $this->get('/search');
+        $response = $this->get(route('search', ['search_string' => 'Oasis']));
         $response->assertOk();
     }
 }

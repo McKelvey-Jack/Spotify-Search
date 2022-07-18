@@ -212,4 +212,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+
+    'client_id' => env('CLIENT_ID'),
+    'client_secret' =>env('CLIENT_SECRET'),
 ];
