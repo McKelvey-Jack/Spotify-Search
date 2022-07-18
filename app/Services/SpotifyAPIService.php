@@ -14,7 +14,7 @@ class SpotifyAPIService
         $this->client_secret = config('app.client_secret');
     }
 
-    public function fetchSpotifySearchData(string $search_string, string $type, int $offset)
+    public function fetchSpotifySearchData(string $search_string, string $type, int $offset = 0)
     
     {
         $credentials = base64_encode($this->client_id. ':' .$this->client_secret);

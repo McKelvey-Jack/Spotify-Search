@@ -25,7 +25,6 @@ class SearchTest extends TestCase
         $response = $this->get(route('search', $params));
         $response->assertJsonPath('artists.items', fn ($item) => count($item) > 0);
     
-
     }
     /** @test */
 
@@ -37,10 +36,11 @@ class SearchTest extends TestCase
     }
     
     /** @test */
+    
     public function search_works_brings_back_correct_offset_data()
     {
         $params = ['search_string' => 'Oasis', 'type' => 'artist', 'offset' => 10];
-        $response = $this->get(route('search', $params));
+        $response = $this->get(route('search', $params , ['params' => ['test' => 'test']]));
         $response->assertJsonPath('artists.offset', 10);
     }
 }
