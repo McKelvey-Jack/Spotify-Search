@@ -43,4 +43,14 @@ class SearchTest extends TestCase
         $response = $this->get(route('search', $params , ['params' => ['test' => 'test']]));
         $response->assertJsonPath('artists.offset', 10);
     }
+
+     /** @test */
+    
+    public function search_catches_validation_errors()
+    {
+        $params = ['search_string' => 'Oasis', 'type' => 'test', 'offset' => 'test'];
+        $response = $this->get(route('search', $params , ['params' => ['test' => 'test']]));
+        $response->assertSessionHasErrors(['type', 'offset']);
+    }
+    
 }
