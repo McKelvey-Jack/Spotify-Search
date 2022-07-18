@@ -20,4 +20,4 @@ use App\Http\Controllers\API\SearchController;
 //     return $request->user();
 // }
 
-Route::get('/search{search_string}', [SearchController::class, 'searchSpotifyAPI'])->name('search');
+Route::get('/search{search_string}/{type}/{offset?}', [SearchController::class, 'searchSpotifyAPI'])->name('search');

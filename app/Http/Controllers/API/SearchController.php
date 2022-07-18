@@ -15,8 +15,10 @@ class SearchController extends Controller
         $this->SpotifyAPIService = $SpotifyAPIService;
     }
 
-    public function searchSpotifyAPI(Request $request, string $search_string, SpotifyAPIService $SpotifyAPIService)
+    public function searchSpotifyAPI(Request $request, SpotifyAPIService $SpotifyAPIService, string $search_string, string $type, int $offset = 0)
     {
-        $data = $this->SpotifyAPIService->fetchSpotifySearchData($search_string);
+        $data = $this->SpotifyAPIService->fetchSpotifySearchData($search_string, $type, $offset);
+
+        return response($data, 200);
     }
 }

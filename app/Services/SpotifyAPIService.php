@@ -14,7 +14,7 @@ class SpotifyAPIService
         $this->client_secret = config('app.client_secret');
     }
 
-    public function fetchSpotifySearchData(string $search_string)
+    public function fetchSpotifySearchData(string $search_string, string $type, int $offset)
     
     {
         $credentials = base64_encode($this->client_id. ':' .$this->client_secret);
@@ -28,8 +28,22 @@ class SpotifyAPIService
             [
                 'Authorization' => 'Basic '.$credentials
             ],
-        ]);
+        ])->getBody()->getContents();
+        $token = json_decode($res)->access_token;
 
-        dd($res->getBody()->getContents());
+        $data = $client->request('GET', "https://api.spotify.com/v1/search", [
+            'headers' => 
+            [
+                'Authorization' => 'Bearer '.$token
+            ],
+            'query' => [
+                'q' => $search_string,
+                'type' => $type,
+                'offset' => $offset
+            ]
+
+        ])->getBody()->getContents();
+        
+        return ($data);
     }
 }
