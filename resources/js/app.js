@@ -7,7 +7,13 @@
 //require('./bootstrap');
 import bootstrap from "./bootstrap";
 
+import Vue from "vue"; // in Vue 2
+import axios from "axios";
+import VueAxios from "vue-axios";
+
 window.Vue = require("vue").default;
+
+Vue.use(VueAxios, axios);
 
 /**
  * The following block of code may be used to automatically register your

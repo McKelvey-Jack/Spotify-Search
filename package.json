@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
-        "axios": "^0.25",
+        "axios": "^0.25.0",
         "bootstrap": "^5.1.3",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "laravel-mix": "^6.0.49",
-        "vite-plugin-vue2": "^2.0.2"
+        "vite-plugin-vue2": "^2.0.2",
+        "vue-axios": "^3.4.1"
     }
 }
