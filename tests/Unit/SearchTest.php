@@ -9,7 +9,6 @@ class SearchTest extends TestCase
 {
     /** @test */
 
-    
     public function valid_search_returns_200()
     {
         $params = ['search_string' => 'Oasis', 'type' => 'artist'];
