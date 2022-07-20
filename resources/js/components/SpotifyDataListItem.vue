@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <h3>{{item.name}}</h3>
+    <div class="">
+        <img class="card-img-top" :src="item.images[0].url" alt="search_result_image">
+        <h3 style="width: 18rem;" class="card-title">{{item.name}}</h3>
         <p>{{item.followers.total}}</p>
         <p>{{item.genres}}</p>
-        <img :src="item.images[0].url" alt="search_result_image">
     </div>
 </template>
 
@@ -14,6 +14,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

@@ -5395,7 +5395,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   data: function data() {
     return {
       searchData: [],
-      page: 0,
+      pagesLoaded: 1,
       lastType: null,
       lastSearchInput: null,
       totalPages: null
@@ -5430,27 +5430,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         console.log(err);
       });
     },
-    togglePage: function togglePage(button) {
-      if (button === 'previous') {
-        this.page -= 1;
-      } else {
-        this.page += 1;
-
-        if (this.dataToDisplay.length === 0) {
-          this.paginationDataCall();
-        }
-      }
-    },
     paginationDataCall: function paginationDataCall() {
+      this.page += 1;
       this.fetchSpotifyData(this.lastSearchInput, this.lastType, true);
     }
   },
   computed: {
     offset: function offset() {
-      return this.page * 20;
-    },
-    dataToDisplay: function dataToDisplay() {
-      return this.searchData.slice(this.offset, this.offset + 20);
+      return this.pagesLoaded * 20;
     },
     searchDataKey: function searchDataKey() {
       var type = this.lastType + 's';
@@ -5476,7 +5463,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['totalPages', 'page'],
   methods: {
     handleButtonClick: function handleButtonClick(button) {
-      this.$emit("handlePageToggleButton", button);
+      this.$emit("handlePaginationDataCall");
     }
   }
 });
@@ -5572,9 +5559,10 @@ var render = function render() {
     on: {
       fetchData: _vm.fetchSpotifyData
     }
-  })], 1), _vm._v(" "), _vm.dataToDisplay.length > 0 ? _c("main", [_c("spotify-data-list", {
+  })], 1), _vm._v(" "), _vm.searchData.length > 0 ? _c("main", [_c("spotify-data-list", {
+    staticClass: "row",
     attrs: {
-      data: _vm.dataToDisplay
+      data: _vm.searchData
     }
   }), _vm._v(" "), _c("pagination-footer", {
     attrs: {
@@ -5582,7 +5570,7 @@ var render = function render() {
       page: _vm.page
     },
     on: {
-      handlePageToggleButton: _vm.togglePage
+      handlePaginationDataCall: _vm.paginationDataCall
     }
   })], 1) : _vm._e()]);
 };
@@ -5616,19 +5604,13 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.page > 0 ? _c("button", {
-    on: {
-      click: function click($event) {
-        return _vm.handleButtonClick("previous");
-      }
-    }
-  }, [_vm._v("previous")]) : _vm._e(), _vm._v(" "), _vm.page < _vm.totalPages ? _c("button", {
+  return _c("div", [_vm.page < _vm.totalPages ? _c("button", {
     on: {
       click: function click($event) {
         return _vm.handleButtonClick("next");
       }
     }
-  }, [_vm._v("next")]) : _vm._e()]);
+  }, [_vm._v("More")]) : _vm._e()]);
 };
 
 var staticRenderFns = [];
@@ -5710,10 +5692,10 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5727,14 +5709,14 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", _vm._l(_vm.data, function (item, index) {
-    return _c("div", {
-      key: item.name + index
-    }, [_c("spotify-data-list-item", {
+    return _c("spotify-data-list-item", {
+      key: item.name + index,
+      staticClass: "card col-sm-6",
       attrs: {
         item: item
       }
-    })], 1);
-  }), 0);
+    });
+  }), 1);
 };
 
 var staticRenderFns = [];
@@ -5743,10 +5725,10 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5759,12 +5741,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("h3", [_vm._v(_vm._s(_vm.item.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.item.followers.total))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.item.genres))]), _vm._v(" "), _c("img", {
+  return _c("div", {}, [_c("img", {
+    staticClass: "card-img-top",
     attrs: {
       src: _vm.item.images[0].url,
       alt: "search_result_image"
     }
-  })]);
+  }), _vm._v(" "), _c("h3", {
+    staticClass: "card-title",
+    staticStyle: {
+      width: "18rem"
+    }
+  }, [_vm._v(_vm._s(_vm.item.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.item.followers.total))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.item.genres))])]);
 };
 
 var staticRenderFns = [];
@@ -10904,6 +10892,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".page_container[data-v-f2b6376c] {\n  min-height: 100vh;\n  background-color: #ffffff;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".card[data-v-fe0f88b2] {\n  margin-bottom: 1rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28435,6 +28447,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataList_vue_vue_type_style_index_0_id_fe0f88b2_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataList_vue_vue_type_style_index_0_id_fe0f88b2_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataList_vue_vue_type_style_index_0_id_fe0f88b2_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -28860,23 +28902,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _SpotifyDataList_vue_vue_type_template_id_fe0f88b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SpotifyDataList.vue?vue&type=template&id=fe0f88b2& */ "./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2&");
+/* harmony import */ var _SpotifyDataList_vue_vue_type_template_id_fe0f88b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SpotifyDataList.vue?vue&type=template&id=fe0f88b2&scoped=true& */ "./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2&scoped=true&");
 /* harmony import */ var _SpotifyDataList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SpotifyDataList.vue?vue&type=script&lang=js& */ "./resources/js/components/SpotifyDataList.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _SpotifyDataList_vue_vue_type_style_index_0_id_fe0f88b2_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true& */ "./resources/js/components/SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _SpotifyDataList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _SpotifyDataList_vue_vue_type_template_id_fe0f88b2___WEBPACK_IMPORTED_MODULE_0__.render,
-  _SpotifyDataList_vue_vue_type_template_id_fe0f88b2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _SpotifyDataList_vue_vue_type_template_id_fe0f88b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _SpotifyDataList_vue_vue_type_template_id_fe0f88b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "fe0f88b2",
   null
   
 )
@@ -28899,7 +28943,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _SpotifyDataListItem_vue_vue_type_template_id_047d8c4c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SpotifyDataListItem.vue?vue&type=template&id=047d8c4c& */ "./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&");
+/* harmony import */ var _SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true& */ "./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true&");
 /* harmony import */ var _SpotifyDataListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SpotifyDataListItem.vue?vue&type=script&lang=js& */ "./resources/js/components/SpotifyDataListItem.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -28911,11 +28955,11 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _SpotifyDataListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _SpotifyDataListItem_vue_vue_type_template_id_047d8c4c___WEBPACK_IMPORTED_MODULE_0__.render,
-  _SpotifyDataListItem_vue_vue_type_template_id_047d8c4c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "047d8c4c",
   null
   
 )
@@ -29058,36 +29102,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2& ***!
-  \************************************************************************************/
+/***/ "./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2&scoped=true& ***!
+  \************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataList_vue_vue_type_template_id_fe0f88b2___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataList_vue_vue_type_template_id_fe0f88b2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataList_vue_vue_type_template_id_fe0f88b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataList_vue_vue_type_template_id_fe0f88b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataList_vue_vue_type_template_id_fe0f88b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SpotifyDataList.vue?vue&type=template&id=fe0f88b2& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataList_vue_vue_type_template_id_fe0f88b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SpotifyDataList.vue?vue&type=template&id=fe0f88b2&scoped=true& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=template&id=fe0f88b2&scoped=true&");
 
 
 /***/ }),
 
-/***/ "./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&":
-/*!****************************************************************************************!*\
-  !*** ./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c& ***!
-  \****************************************************************************************/
+/***/ "./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true& ***!
+  \****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_template_id_047d8c4c___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_template_id_047d8c4c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_template_id_047d8c4c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SpotifyDataListItem.vue?vue&type=template&id=047d8c4c& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true&");
 
 
 /***/ }),
@@ -29101,6 +29145,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_style_index_0_id_f2b6376c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Home.vue?vue&type=style&index=0&id=f2b6376c&lang=scss&scoped=true& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Home.vue?vue&type=style&index=0&id=f2b6376c&lang=scss&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true& ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataList_vue_vue_type_style_index_0_id_fe0f88b2_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataList.vue?vue&type=style&index=0&id=fe0f88b2&lang=scss&scoped=true&");
 
 
 /***/ }),

@@ -1,10 +1,8 @@
 <template>
 <div>
-  <div v-for="(item, index) in data" :key="item.name + index">
-    <spotify-data-list-item 
+    <spotify-data-list-item v-for="(item, index) in data" :key="item.name + index" class="card col-sm-6"
       :item="item">
     </spotify-data-list-item>
-  </div>
 </div>
 </template>
 
@@ -17,6 +15,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+.card {
+  margin-bottom: 1rem;
+}
 
 </style>

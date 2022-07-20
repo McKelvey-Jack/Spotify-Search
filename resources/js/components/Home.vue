@@ -6,14 +6,15 @@
             </div>
             <search @fetchData="fetchSpotifyData" />
         </header>
-        <main v-if="dataToDisplay.length > 0">
+        <main v-if="searchData.length > 0">
             <spotify-data-list 
-                :data="dataToDisplay">
+                :data="searchData"
+                class="row">
             </spotify-data-list>
             <pagination-footer 
                 :totalPages="totalPages"
                 :page="page"
-                @handlePageToggleButton="togglePage"
+                @handlePaginationDataCall="paginationDataCall"
                 >
             </pagination-footer>
         </main>
@@ -29,7 +30,7 @@ export default {
     data() {
         return {
             searchData: [],
-            page: 0,
+            pagesLoaded: 1,
             lastType: null,
             lastSearchInput: null,
             totalPages: null
@@ -61,26 +62,14 @@ export default {
                     console.log(err)
                 })
         },
-        togglePage(button) {
-            if (button === 'previous') {
-                this.page -= 1
-            } else {
-                this.page += 1
-                if (this.dataToDisplay.length === 0) {
-                    this.paginationDataCall()
-                }
-            }
-        },
         paginationDataCall() {
+            this.page += 1
             this.fetchSpotifyData(this.lastSearchInput, this.lastType, true)
         }
     },
     computed: {
         offset() {
-            return this.page * 20;
-        },
-        dataToDisplay() {
-            return this.searchData.slice(this.offset, this.offset + 20)
+            return this.pagesLoaded * 20;
         },
         searchDataKey() {
             let type = this.lastType + 's'
