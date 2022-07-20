@@ -18,7 +18,7 @@ class SearchController extends Controller
     public function searchSpotifyAPI(Request $request, SpotifyAPIService $SpotifyAPIService, string $search_string)
     {
         $validated = $request->validate([
-            'type' => 'required|in:artist,album,track',
+            'type' => 'required|in:artist,album,track,playlist',
             'offset' => 'numeric',
         ]);
 
