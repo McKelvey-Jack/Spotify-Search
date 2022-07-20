@@ -1,8 +1,8 @@
 <template>
     <div class="page_container">
-        <header>
+        <header class="navbar navbar-light bg-light">
             <div class="logo_container">
-                <p>Spotify Search</p>
+                <img class="logo" src="/storage/spotify-brandlogo.net_.png" alt="">
             </div>
             <search @fetchData="fetchSpotifyData" />
         </header>
@@ -80,8 +80,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page_container {
-    min-height: 100vh;
-    background-color: #ffffff;
-}
+    .page_container {
+        min-height: 100vh;
+        background-color: #ffffff;
+    }
+
+    .logo {
+        height: 100%;
+        max-width: 3rem;
+    }
 </style>
