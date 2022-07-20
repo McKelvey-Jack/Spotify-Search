@@ -7,9 +7,9 @@
             <search @fetchData="fetchSpotifyData" />
         </header>
         <main v-if="dataToDisplay.length > 0">
-            <spotify-search-data-list 
+            <spotify-data-list 
                 :data="dataToDisplay">
-            </spotify-search-data-list>
+            </spotify-data-list>
             <pagination-footer 
                 :totalPages="totalPages"
                 :page="page"
@@ -23,9 +23,9 @@
 <script>
 import search from "./Search.vue";
 import paginationFooter from './PaginationFooter.vue'
-import spotifySearchDataList from './SpotifySearchDataList.vue'
+import spotifyDataList from './SpotifyDataList.vue'
 export default {
-    components: { search, paginationFooter, spotifySearchDataList },
+    components: { search, paginationFooter, spotifyDataList },
     data() {
         return {
             searchData: [],
@@ -47,14 +47,15 @@ export default {
                     },
                 })
                 .then(({ data }) => {
+                    const list = data[this.searchDataKey]
                     if (paginationCall) {
                         let newItems = this.searchData
-                        newItems.push(...data[this.searchDataKey].items)
+                        newItems.push(...list.items)
                         this.searchData = newItems
                     } else {
                         this.page = 0
-                        this.totalPages = data[this.searchDataKey].total
-                        this.searchData = data[this.searchDataKey].items
+                        this.totalPages = list.total
+                        this.searchData = list.items
                     }
                 }).catch((err)=>{
                     console.log(err)
