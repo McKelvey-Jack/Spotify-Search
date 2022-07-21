@@ -11,7 +11,7 @@
                 </option>
             </select>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" v-model="searchInput" />
-            <button @click="handleSearch" type="submit" class="btn btn-outline-success go_button">Go</button>
+            <button :disabled="disabled" @click="handleSearch" type="submit" class="btn btn-success go_button">Go</button>
         </div>
     </header>
 </template>
@@ -26,9 +26,15 @@ export default {
     },
     methods: {
         handleSearch() {
+            if (this.disabled) return
             this.$emit("fetchData", this.searchInput, this.selectedType);
         },
     },
+    computed: {
+        disabled() {
+            return this.searchInput.length === 0
+        }
+    }
 };
 </script>
 

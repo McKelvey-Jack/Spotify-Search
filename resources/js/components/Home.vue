@@ -2,7 +2,7 @@
     <div class="page_container">
         <header-component @fetchData="fetchSpotifyData" />
         <main v-if="searchData && !loading">
-            <div v-if="searchData.length > 0">
+            <div class="list_container" v-if="searchData.length > 0">
                 <spotify-data-list 
                     :data="searchData"
                     :type="lastType"
@@ -86,7 +86,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
     .page_container {
         min-height: 100vh;
         background-color: #ffffff;
@@ -101,5 +101,12 @@ export default {
         text-align: center;
         font-size: 1.2rem;
         margin-top: 1rem;
+    }
+    main {
+        max-width: 1400px;
+        margin: auto
+    }
+    .list_container {
+        margin: 1rem 2rem;
     }
 </style>

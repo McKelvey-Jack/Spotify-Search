@@ -10252,6 +10252,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.card {
+  margin-bottom: 1rem;
+  padding: 0;
+}
 .card .card_title {
   text-align: center;
 }
@@ -10259,12 +10263,15 @@ textarea.form-control-lg {
   text-decoration: none;
   color: black;
 }
+.card .title_link:hover {
+  cursor: pointer;
+}
 .card .card_content {
   padding: 1rem;
 }
 .card .card_content_section {
   display: grid;
-  grid-template-columns: 1fr 9fr;
+  grid-template-columns: 2fr 10fr;
   grid-gap: 1rem;
 }
 .card .list_label {

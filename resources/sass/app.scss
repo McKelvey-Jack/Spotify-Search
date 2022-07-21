@@ -8,6 +8,8 @@
 @import '~bootstrap/scss/bootstrap';
 
 .card {
+    margin-bottom: 1rem;
+    padding: 0;
     .card_title {
         text-align: center;
      }
@@ -15,12 +17,15 @@
         text-decoration: none;
         color: black;
     }
+    .title_link:hover {
+        cursor: pointer;
+    }
     .card_content {
         padding: 1rem;
     }
     .card_content_section {
         display: grid;
-        grid-template-columns: 1fr 9fr;
+        grid-template-columns: 2fr 10fr;
         grid-gap: 1rem;
      }
     .list_label {
