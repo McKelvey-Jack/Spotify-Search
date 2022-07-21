@@ -9,6 +9,7 @@
         <main v-if="searchData.length > 0">
             <spotify-data-list 
                 :data="searchData"
+                :type="lastType"
                 class="row">
             </spotify-data-list>
             <pagination-footer 

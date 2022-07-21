@@ -5509,20 +5509,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _SpotifyDataListItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SpotifyDataListItem.vue */ "./resources/js/components/SpotifyDataListItem.vue");
+/* harmony import */ var _cards_SpotifyArtist_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cards/SpotifyArtist.vue */ "./resources/js/components/cards/SpotifyArtist.vue");
+/* harmony import */ var _cards_SpotifyTrack_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cards/SpotifyTrack.vue */ "./resources/js/components/cards/SpotifyTrack.vue");
+/* harmony import */ var _cards_SpotifyPlaylist_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cards/SpotifyPlaylist.vue */ "./resources/js/components/cards/SpotifyPlaylist.vue");
+/* harmony import */ var _cards_SpotifyAlbum_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cards/SpotifyAlbum.vue */ "./resources/js/components/cards/SpotifyAlbum.vue");
+
+
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    spotifyDataListItem: _SpotifyDataListItem_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    spotifyartist: _cards_SpotifyArtist_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    spotifytrack: _cards_SpotifyTrack_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    spotifyplaylist: _cards_SpotifyPlaylist_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    spotifyalbum: _cards_SpotifyAlbum_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  props: ['data']
+  props: ['data', 'type']
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/cards/SpotifyArtist.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/cards/SpotifyArtist.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -5564,7 +5573,8 @@ var render = function render() {
   })], 1), _vm._v(" "), _vm.searchData.length > 0 ? _c("main", [_c("spotify-data-list", {
     staticClass: "row",
     attrs: {
-      data: _vm.searchData
+      data: _vm.searchData,
+      type: _vm.lastType
     }
   }), _vm._v(" "), _c("pagination-footer", {
     attrs: {
@@ -5724,8 +5734,9 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", _vm._l(_vm.data, function (item, index) {
-    return _c("spotify-data-list-item", {
+    return _c("spotify".concat(_vm.type), {
       key: item.name + index,
+      tag: "component",
       staticClass: "card col-sm-6",
       attrs: {
         item: item
@@ -5740,9 +5751,9 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true&":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/cards/SpotifyArtist.vue?vue&type=template&id=42c1774c&scoped=true&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true& ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/cards/SpotifyArtist.vue?vue&type=template&id=42c1774c&scoped=true& ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -5756,12 +5767,14 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("img", {
+  return _c("div", [_vm.item.images ? _c("img", {
     staticClass: "card-img-top",
     attrs: {
       src: _vm.item.images[0].url,
       alt: "search_result_image"
     }
+  }) : _c("i", {
+    staticClass: "fa-solid fa-music card-img-top"
   }), _vm._v(" "), _c("h3", {
     staticClass: "card-title",
     staticStyle: {
@@ -29003,9 +29016,43 @@ component.options.__file = "resources/js/components/SpotifyDataList.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/SpotifyDataListItem.vue":
+/***/ "./resources/js/components/cards/SpotifyAlbum.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/cards/SpotifyAlbum.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/cards/SpotifyAlbum.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/cards/SpotifyArtist.vue":
 /*!*********************************************************!*\
-  !*** ./resources/js/components/SpotifyDataListItem.vue ***!
+  !*** ./resources/js/components/cards/SpotifyArtist.vue ***!
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -29014,9 +29061,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true& */ "./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true&");
-/* harmony import */ var _SpotifyDataListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SpotifyDataListItem.vue?vue&type=script&lang=js& */ "./resources/js/components/SpotifyDataListItem.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _SpotifyArtist_vue_vue_type_template_id_42c1774c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SpotifyArtist.vue?vue&type=template&id=42c1774c&scoped=true& */ "./resources/js/components/cards/SpotifyArtist.vue?vue&type=template&id=42c1774c&scoped=true&");
+/* harmony import */ var _SpotifyArtist_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SpotifyArtist.vue?vue&type=script&lang=js& */ "./resources/js/components/cards/SpotifyArtist.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -29025,19 +29072,87 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _SpotifyDataListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _SpotifyArtist_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SpotifyArtist_vue_vue_type_template_id_42c1774c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _SpotifyArtist_vue_vue_type_template_id_42c1774c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "047d8c4c",
+  "42c1774c",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/SpotifyDataListItem.vue"
+component.options.__file = "resources/js/components/cards/SpotifyArtist.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/cards/SpotifyPlaylist.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/cards/SpotifyPlaylist.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/cards/SpotifyPlaylist.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/cards/SpotifyTrack.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/cards/SpotifyTrack.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/cards/SpotifyTrack.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -29106,9 +29221,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/SpotifyDataListItem.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/components/cards/SpotifyArtist.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************!*\
-  !*** ./resources/js/components/SpotifyDataListItem.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/components/cards/SpotifyArtist.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -29117,8 +29232,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SpotifyDataListItem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyArtist_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SpotifyArtist.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/cards/SpotifyArtist.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyArtist_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -29190,19 +29305,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true&":
+/***/ "./resources/js/components/cards/SpotifyArtist.vue?vue&type=template&id=42c1774c&scoped=true&":
 /*!****************************************************************************************************!*\
-  !*** ./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true& ***!
+  !*** ./resources/js/components/cards/SpotifyArtist.vue?vue&type=template&id=42c1774c&scoped=true& ***!
   \****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyArtist_vue_vue_type_template_id_42c1774c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyArtist_vue_vue_type_template_id_42c1774c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyDataListItem_vue_vue_type_template_id_047d8c4c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SpotifyDataListItem.vue?vue&type=template&id=047d8c4c&scoped=true&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SpotifyArtist_vue_vue_type_template_id_42c1774c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SpotifyArtist.vue?vue&type=template&id=42c1774c&scoped=true& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/cards/SpotifyArtist.vue?vue&type=template&id=42c1774c&scoped=true&");
 
 
 /***/ }),
