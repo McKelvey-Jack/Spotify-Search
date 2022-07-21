@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <button v-if="page < totalPages" @click="handleButtonClick('next')">More</button>
+  <div class="button_container">
+    <button v-if="pagesLoaded < totalPages" @click="handleButtonClick('next')" type="button" class="btn btn-outline-secondary">More</button>
   </div>
 </template>
 
 <script>
 export default {
-    props: ['totalPages', 'page'],
+    props: ['totalPages', 'pagesLoaded'],
     methods: {
         handleButtonClick(button) {
             this.$emit("handlePaginationDataCall")
@@ -15,6 +15,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.button_container {
+    width: 100%; 
+    text-align: center; 
+    margin-bottom: 1rem;
+}
 </style>

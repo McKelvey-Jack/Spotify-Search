@@ -1,12 +1,11 @@
 <template>
-<div>
+<div class="list_container">
   <component v-for="(item, index) in data" 
     :key="item.name + index" 
-    class="card col-sm-6" 
+    class="card col-sm-6 col-md-4 col-xl-3 m2 p2 " 
     :is="`spotify${type}`" 
     :item="item">
   </component>
-
 </div>
 </template>
 
@@ -23,10 +22,15 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 .card {
   margin-bottom: 1rem;
+  padding: 0;
+}
+
+.list_container {
+  margin: 1rem 2rem;
 }
 
 </style>

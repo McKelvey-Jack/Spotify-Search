@@ -1,46 +1,49 @@
 <template>
     <div class="page_container">
-        <header class="navbar navbar-light bg-light">
-            <div class="logo_container">
-                <img class="logo" src="/storage/spotify-brandlogo.net_.png" alt="">
+        <header-component @fetchData="fetchSpotifyData" />
+        <main v-if="searchData && !loading">
+            <div v-if="searchData.length > 0">
+                <spotify-data-list 
+                    :data="searchData"
+                    :type="lastType"
+                    class="row">
+                </spotify-data-list>
+                <pagination-footer
+                    :totalPages="totalPages"
+                    :pagesLoaded="pagesLoaded"
+                    @handlePaginationDataCall="paginationDataCall">
+                </pagination-footer>
             </div>
-            <search @fetchData="fetchSpotifyData" />
-        </header>
-        <main v-if="searchData.length > 0">
-            <spotify-data-list 
-                :data="searchData"
-                :type="lastType"
-                class="row">
-            </spotify-data-list>
-            <pagination-footer 
-                :totalPages="totalPages"
-                :page="page"
-                @handlePaginationDataCall="paginationDataCall"
-                >
-            </pagination-footer>
+            <p v-else class="no_data_message"> No Data for this search :(</p>
         </main>
+        <pulse-loader class="loader" color='#1DB954' :loading="loading"></pulse-loader>
     </div>
 </template>
 
 <script>
-import search from "./Search.vue";
+
+import HeaderComponent from "./HeaderComponent.vue";
 import paginationFooter from './PaginationFooter.vue'
 import spotifyDataList from './SpotifyDataList.vue'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+
 export default {
-    components: { search, paginationFooter, spotifyDataList },
+    components: { HeaderComponent, paginationFooter, spotifyDataList, PulseLoader },
     data() {
         return {
-            searchData: [],
+            searchData: null,
             pagesLoaded: 1,
             lastType: null,
             lastSearchInput: null,
-            totalPages: null
+            totalPages: null,
+            loading: false
         }
     },
     methods: {
-        fetchSpotifyData(searchInput, type, paginationCall = false) {
+        fetchSpotifyData(searchInput, type, paginationCall = false, ) {
             this.lastType = type
             this.lastSearchInput = searchInput
+            if (!paginationCall) this.loading = true
             Vue.axios
                 .get(route("search", searchInput), {
                     params: {
@@ -51,21 +54,24 @@ export default {
                 .then(({ data }) => {
                     const list = data[this.searchDataKey]
                     if (paginationCall) {
+                        this.pagesLoaded += 1
                         let newItems = this.searchData
                         newItems.push(...list.items)
                         this.searchData = newItems
                     } else {
-                        this.page = 0
+                        this.pagesLoaded = 0
                         this.totalPages = list.total
                         this.searchData = list.items
                     }
                 }).catch((err)=>{
                     console.log(err)
+                }).finally(()=>{
+                    this.loading = false
                 })
         },
         paginationDataCall() {
             this.page += 1
-            this.fetchSpotifyData(this.lastSearchInput, this.lastType, true)
+            this.fetchSpotifyData(this.lastSearchInput, this.lastType, true, false)
         }
     },
     computed: {
@@ -86,8 +92,14 @@ export default {
         background-color: #ffffff;
     }
 
-    .logo {
-        height: 100%;
-        max-width: 3rem;
+    .loader {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .no_data_message {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-top: 1rem;
     }
 </style>
