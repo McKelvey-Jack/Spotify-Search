@@ -7,9 +7,12 @@
 //require('./bootstrap');
 import bootstrap from "./bootstrap";
 
-import Vue from "vue"; // in Vue 2
 import axios from "axios";
 import VueAxios from "vue-axios";
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 window.Vue = require("vue").default;
 
@@ -27,6 +30,8 @@ Vue.use(VueAxios, axios);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component("home", require("./components/Home.vue").default);
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

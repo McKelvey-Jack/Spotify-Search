@@ -6,7 +6,7 @@
                 <spotify-data-list 
                     :data="searchData"
                     :type="lastType"
-                    class="row">
+                    class="row justify-content-center">
                 </spotify-data-list>
                 <pagination-footer
                     :totalPages="totalPages"

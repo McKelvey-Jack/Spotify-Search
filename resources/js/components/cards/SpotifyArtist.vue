@@ -5,15 +5,9 @@
         <div class="card_content">
             <h3 class="card-title"><a class="title_link" target="_blank" :href="item.external_urls.spotify">{{item.name}}</a></h3>
             <div class="card_content_section">
-                <span class="list_label">Followers:</span>
-                <p>{{formatNumber(item.followers.total)}}</p>
+                <span class="list_label"><i class="fas fa-user-check list_icon"></i></span>
+                <p>{{formatNumber(item.followers.total)}}&nbsp;follower<span v-if="item.followers.total > 0">s</span></p>
             </div>
-            <!-- <div v-if="item.genres.length > 0" class="card_content_section">
-                <span class="list_label">Genres: </span>
-                <div class="list_container">
-                    <p v-for="(genre, index) in item.genres" :key="genre">{{genre}}<span v-if="index < item.genres.length - 1">,&nbsp;</span></p>
-                </div>
-            </div> -->
         </div>
     </div>
 </template>
@@ -41,4 +35,11 @@ export default {
 </script>
 
 <style scoped>
+.image {
+    max-height: 321px;
+}
+
+.list_label {
+    font-size: 1.1rem;
+}
 </style>

@@ -10253,11 +10253,16 @@ textarea.form-control-lg {
   }
 }
 .card {
+  margin: 6px;
   margin-bottom: 1rem;
   padding: 0;
 }
+.card .card_title_container {
+  margin-bottom: 1rem;
+}
 .card .card_title {
-  text-align: center;
+  font-size: 1.3rem;
+  margin: 0;
 }
 .card .title_link {
   text-decoration: none;
@@ -10271,14 +10276,20 @@ textarea.form-control-lg {
 }
 .card .card_content_section {
   display: grid;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 1rem;
+  grid-template-columns: 1fr 8fr;
+  align-items: baseline;
 }
 .card .list_label {
   margin-right: 6px;
   font-weight: 800;
 }
+.card .list_label .list_icon {
+  color: #1DB954;
+}
 .card .list_container {
   display: flex;
   flex-wrap: wrap;
+}
+.card .list_container .list_item {
+  margin: 0;
 }
