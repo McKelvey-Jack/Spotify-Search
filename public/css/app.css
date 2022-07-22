@@ -10279,8 +10279,10 @@ textarea.form-control-lg {
   grid-template-columns: 1fr 8fr;
   align-items: baseline;
 }
+.card .card_content_section p {
+  margin: 0;
+}
 .card .list_label {
-  margin-right: 6px;
   font-weight: 800;
 }
 .card .list_label .list_icon {

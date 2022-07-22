@@ -16,11 +16,12 @@ export default {
       computed: {
         bestImage() {
             let imgToReturn = this.images[0]
-            // this.images.forEach(img => {
-            //     if (img.height > 500 && img.height < 700) {
-            //         imgToReturn = img
-            //     }
-            // });
+            this.images.forEach(img => {
+                if (img.height >= 200 && img.height < 400) {
+                    imgToReturn = img
+                }
+            });
+            console.log(imgToReturn.height)
             return imgToReturn
         }
     },
@@ -30,7 +31,7 @@ export default {
 
 <style scoped>
  .image {
-    height: 300px;
+    height: 325px;
     object-fit: cover;
  }
 </style>

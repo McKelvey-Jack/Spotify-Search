@@ -9194,12 +9194,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     bestImage: function bestImage() {
-      var imgToReturn = this.images[0]; // this.images.forEach(img => {
-      //     if (img.height > 500 && img.height < 700) {
-      //         imgToReturn = img
-      //     }
-      // });
-
+      var imgToReturn = this.images[0];
+      this.images.forEach(function (img) {
+        if (img.height >= 200 && img.height < 400) {
+          imgToReturn = img;
+        }
+      });
+      console.log(imgToReturn.height);
       return imgToReturn;
     }
   }
@@ -9519,7 +9520,7 @@ var render = function render() {
     return _c("spotify".concat(_vm.type), {
       key: item.name + index,
       tag: "component",
-      staticClass: "card col-sm-6 col-md-4 col-xl-3 m2 p2",
+      staticClass: "card col-sm-6 col-md-4 col-xl-3",
       attrs: {
         item: item
       }
@@ -15031,7 +15032,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.image[data-v-c9e05d38] {\n   height: 300px;\n   -o-object-fit: cover;\n      object-fit: cover;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.image[data-v-c9e05d38] {\n   height: 325px;\n   -o-object-fit: cover;\n      object-fit: cover;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

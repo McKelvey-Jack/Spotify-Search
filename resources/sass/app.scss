@@ -32,9 +32,11 @@
         display: grid;
         grid-template-columns: 1fr 8fr;
         align-items: baseline;
+        p {
+            margin: 0;
+        }
      }
     .list_label {
-        margin-right: 6px;
         font-weight: 800;
         .list_icon {
             color: #1DB954;
