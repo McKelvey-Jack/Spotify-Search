@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 use Tests\TestCase;
 
-class SearchTest extends TestCase
+class SpotifyAPISearchTest extends TestCase
 {
     /** @test */
     public function valid_search_returns_200()
@@ -29,7 +29,7 @@ class SearchTest extends TestCase
         $response = $this->get(route('search', $params));
         $response->assertJsonStructure(['tracks']);
     }
-    
+
     /** @test */
     public function search_works_with_no_offset()
     {

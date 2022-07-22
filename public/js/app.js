@@ -9434,7 +9434,7 @@ var render = function render() {
   }), _vm._v(" "), _vm.searchData && !_vm.loading ? _c("main", [_vm.searchData.length > 0 ? _c("div", {
     staticClass: "list_container"
   }, [_c("spotify-data-list", {
-    staticClass: "row justify-content-center",
+    staticClass: "row g-0 justify-content-center",
     attrs: {
       data: _vm.searchData,
       type: _vm.lastType
@@ -9519,7 +9519,7 @@ var render = function render() {
     return _c("spotify".concat(_vm.type), {
       key: item.name + index,
       tag: "component",
-      staticClass: "card col-sm-6 col-md-4 col-xl-3",
+      staticClass: "card col-sm-6 col-md-5 col-xl-3",
       attrs: {
         item: item
       }
@@ -14983,7 +14983,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.page_container[data-v-f2b6376c] {\n    min-height: 100vh;\n    background-color: #ffffff;\n}\n.loader[data-v-f2b6376c] {\n    text-align: center;\n    margin-top: 1rem;\n}\n.no_data_message[data-v-f2b6376c] {\n    text-align: center;\n    font-size: 1.2rem;\n    margin-top: 1rem;\n}\nmain[data-v-f2b6376c] {\n    max-width: 1400px;\n    margin: auto\n}\n.list_container[data-v-f2b6376c] {\n    margin: 1rem 2rem;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.page_container[data-v-f2b6376c] {\n    min-height: 100vh;\n    background-color: #ffffff;\n}\n.loader[data-v-f2b6376c] {\n    text-align: center;\n    margin-top: 1rem;\n}\n.no_data_message[data-v-f2b6376c] {\n    text-align: center;\n    font-size: 1.2rem;\n    margin-top: 1rem;\n}\nmain[data-v-f2b6376c] {\n    max-width: 1400px;\n    margin: auto\n}\n.list_container[data-v-f2b6376c] {\n    margin-top: 1rem;\n    width: 100%;\n}\n@media screen and (max-width: 575px) {\n.list_container[data-v-f2b6376c] {\n        padding: 1rem;\n}\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -15007,7 +15007,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.button_container[data-v-1ab24480] {\n    width: 100%; \n    text-align: center; \n    margin-bottom: 1rem;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.button_container[data-v-1ab24480] {\n    width: 100%; \n    text-align: center; \n    padding-bottom: 1rem;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

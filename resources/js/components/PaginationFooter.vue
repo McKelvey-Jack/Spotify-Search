@@ -19,6 +19,6 @@ export default {
 .button_container {
     width: 100%; 
     text-align: center; 
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 </style>

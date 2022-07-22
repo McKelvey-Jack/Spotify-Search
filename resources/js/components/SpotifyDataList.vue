@@ -2,7 +2,7 @@
 <div class="list">
   <component v-for="(item, index) in data" 
     :key="item.name + index" 
-    class="card col-sm-6 col-md-4 col-xl-3" 
+    class="card col-sm-6 col-md-5 col-xl-3" 
     :is="`spotify${type}`" 
     :item="item">
   </component>

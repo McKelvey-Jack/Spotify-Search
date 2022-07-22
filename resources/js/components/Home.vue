@@ -6,7 +6,7 @@
                 <spotify-data-list 
                     :data="searchData"
                     :type="lastType"
-                    class="row justify-content-center">
+                    class="row g-0 justify-content-center">
                 </spotify-data-list>
                 <pagination-footer
                     v-if="nextPageExists"
@@ -108,6 +108,14 @@ export default {
         margin: auto
     }
     .list_container {
-        margin: 1rem 2rem;
+        margin-top: 1rem;
+        width: 100%;
     }
+
+     @media screen and (max-width: 575px) {
+        .list_container {
+            padding: 1rem;
+        }
+    }
+
 </style>
