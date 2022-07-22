@@ -9397,7 +9397,7 @@ var staticRenderFns = [function () {
   }, [_c("img", {
     staticClass: "logo",
     attrs: {
-      src: "/storage/spotify-brandlogo.net_.png",
+      src: "/assets/spotify-brandlogo.net_.png",
       alt: ""
     }
   }), _vm._v(" "), _c("h1", {

@@ -1,7 +1,7 @@
 <template>
       <header class="navbar navbar-light bg-light">
         <div class="logo_container">
-            <img class="logo" src="/storage/spotify-brandlogo.net_.png" alt="">
+            <img class="logo" src="/assets/spotify-brandlogo.net_.png" alt="">
             <h1 class="logo_text">Spotify Search</h1>
         </div>
         <div class="search_container">
