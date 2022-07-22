@@ -1,7 +1,7 @@
 <template>
   <div> 
     <img v-if="images.length > 0" class="card-img-top image" :src="bestImage.url" @error="setAltImg" alt="search_result_image">
-    <img v-else class="card-img-top image" src="/storage/Image-Coming-Soon-Placeholder-600x600.png" alt="search_result_image">
+    <img v-else class="card-img-top image" src="/assets/Image-Coming-Soon-Placeholder-600x600.png" alt="search_result_image">
   </div>
 </template>
 
@@ -17,10 +17,11 @@ export default {
         bestImage() {
             let imgToReturn = this.images[0]
             this.images.forEach(img => {
-                if (img.height >= 200 && img.height < 400) {
+                if (img.height > 400 && img.height < 850) {
                     imgToReturn = img
                 }
             });
+            console.log(imgToReturn.height)
             return imgToReturn
         }
     },
@@ -29,8 +30,11 @@ export default {
 </script>
 
 <style scoped>
- .image {
-    height: 325px;
-    object-fit: cover;
- }
+
+ @media screen and (min-width: 768px) {
+    .image {
+        height: 325px;
+        object-fit: cover;
+        }
+    }
 </style>

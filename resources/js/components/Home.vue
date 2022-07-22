@@ -112,7 +112,7 @@ export default {
         width: 100%;
     }
 
-     @media screen and (max-width: 575px) {
+     @media screen and (max-width: 576px) {
         .list_container {
             padding: 1rem;
         }

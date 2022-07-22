@@ -9196,10 +9196,11 @@ __webpack_require__.r(__webpack_exports__);
     bestImage: function bestImage() {
       var imgToReturn = this.images[0];
       this.images.forEach(function (img) {
-        if (img.height >= 200 && img.height < 400) {
+        if (img.height > 400 && img.height < 850) {
           imgToReturn = img;
         }
       });
+      console.log(imgToReturn.height);
       return imgToReturn;
     }
   }
@@ -9561,7 +9562,7 @@ var render = function render() {
   }) : _c("img", {
     staticClass: "card-img-top image",
     attrs: {
-      src: "/storage/Image-Coming-Soon-Placeholder-600x600.png",
+      src: "/assets/Image-Coming-Soon-Placeholder-600x600.png",
       alt: "search_result_image"
     }
   })]);
@@ -14983,7 +14984,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.page_container[data-v-f2b6376c] {\n    min-height: 100vh;\n    background-color: #ffffff;\n}\n.loader[data-v-f2b6376c] {\n    text-align: center;\n    margin-top: 1rem;\n}\n.no_data_message[data-v-f2b6376c] {\n    text-align: center;\n    font-size: 1.2rem;\n    margin-top: 1rem;\n}\nmain[data-v-f2b6376c] {\n    max-width: 1400px;\n    margin: auto\n}\n.list_container[data-v-f2b6376c] {\n    margin-top: 1rem;\n    width: 100%;\n}\n@media screen and (max-width: 575px) {\n.list_container[data-v-f2b6376c] {\n        padding: 1rem;\n}\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.page_container[data-v-f2b6376c] {\n    min-height: 100vh;\n    background-color: #ffffff;\n}\n.loader[data-v-f2b6376c] {\n    text-align: center;\n    margin-top: 1rem;\n}\n.no_data_message[data-v-f2b6376c] {\n    text-align: center;\n    font-size: 1.2rem;\n    margin-top: 1rem;\n}\nmain[data-v-f2b6376c] {\n    max-width: 1400px;\n    margin: auto\n}\n.list_container[data-v-f2b6376c] {\n    margin-top: 1rem;\n    width: 100%;\n}\n@media screen and (max-width: 576px) {\n.list_container[data-v-f2b6376c] {\n        padding: 1rem;\n}\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -15031,7 +15032,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.image[data-v-c9e05d38] {\n   height: 325px;\n   -o-object-fit: cover;\n      object-fit: cover;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n@media screen and (min-width: 768px) {\n.image[data-v-c9e05d38] {\n       height: 325px;\n       -o-object-fit: cover;\n          object-fit: cover;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
