@@ -16,11 +16,11 @@ export default {
       computed: {
         bestImage() {
             let imgToReturn = this.images[0]
-            this.images.forEach(img => {
-                if (img.height > 500 && img.height < 700) {
-                    imgToReturn = img
-                }
-            });
+            // this.images.forEach(img => {
+            //     if (img.height > 500 && img.height < 700) {
+            //         imgToReturn = img
+            //     }
+            // });
             return imgToReturn
         }
     },

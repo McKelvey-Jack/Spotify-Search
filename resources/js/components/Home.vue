@@ -9,8 +9,7 @@
                     class="row justify-content-center">
                 </spotify-data-list>
                 <pagination-footer
-                    :totalPages="totalPages"
-                    :pagesLoaded="pagesLoaded"
+                    v-if="nextPageExists"
                     @handlePaginationDataCall="paginationDataCall">
                 </pagination-footer>
             </div>
@@ -32,18 +31,22 @@ export default {
     data() {
         return {
             searchData: null,
-            pagesLoaded: 1,
+            currentPage: 0,
             lastType: null,
             lastSearchInput: null,
             totalPages: null,
-            loading: false
+            loading: false,
+            nextPageExists: false
         }
     },
     methods: {
         fetchSpotifyData(searchInput, type, paginationCall = false, ) {
             this.lastType = type
             this.lastSearchInput = searchInput
-            if (!paginationCall) this.loading = true
+            if (!paginationCall) {
+                this.loading = true
+                this.currentPage = 0
+            } 
             Vue.axios
                 .get(route("search", searchInput), {
                     params: {
@@ -52,16 +55,14 @@ export default {
                     },
                 })
                 .then(({ data }) => {
-                    const list = data[this.searchDataKey]
+                    const spotifyData = data[this.searchDataKey]
+                    spotifyData.next ? this.nextPageExists = true : this.nextPageExists = false
                     if (paginationCall) {
-                        this.pagesLoaded += 1
                         let newItems = this.searchData
-                        newItems.push(...list.items)
+                        newItems.push(...spotifyData.items)
                         this.searchData = newItems
                     } else {
-                        this.pagesLoaded = 0
-                        this.totalPages = list.total
-                        this.searchData = list.items
+                        this.searchData = spotifyData.items
                     }
                 }).catch((err)=>{
                     console.log(err)
@@ -70,13 +71,13 @@ export default {
                 })
         },
         paginationDataCall() {
-            this.page += 1
+            this.currentPage += 1
             this.fetchSpotifyData(this.lastSearchInput, this.lastType, true, false)
         }
     },
     computed: {
         offset() {
-            return this.pagesLoaded * 20;
+            return this.currentPage * 20;
         },
         searchDataKey() {
             let type = this.lastType + 's'

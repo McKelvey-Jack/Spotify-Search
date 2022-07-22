@@ -1,6 +1,6 @@
 <template>
   <div class="button_container">
-    <button v-if="pagesLoaded < totalPages" @click="handleButtonClick('next')" type="button" class="btn btn-outline-secondary">More</button>
+    <button @click="handleButtonClick('next')" type="button" class="btn btn-outline-secondary">More</button>
   </div>
 </template>
 

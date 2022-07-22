@@ -9059,11 +9059,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   data: function data() {
     return {
       searchData: null,
-      pagesLoaded: 1,
+      currentPage: 0,
       lastType: null,
       lastSearchInput: null,
       totalPages: null,
-      loading: false
+      loading: false,
+      nextPageExists: false
     };
   },
   methods: {
@@ -9073,7 +9074,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var paginationCall = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
       this.lastType = type;
       this.lastSearchInput = searchInput;
-      if (!paginationCall) this.loading = true;
+
+      if (!paginationCall) {
+        this.loading = true;
+        this.currentPage = 0;
+      }
+
       Vue.axios.get(route("search", searchInput), {
         params: {
           type: type,
@@ -9081,17 +9087,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }).then(function (_ref) {
         var data = _ref.data;
-        var list = data[_this.searchDataKey];
+        var spotifyData = data[_this.searchDataKey];
+        spotifyData.next ? _this.nextPageExists = true : _this.nextPageExists = false;
 
         if (paginationCall) {
-          _this.pagesLoaded += 1;
           var newItems = _this.searchData;
-          newItems.push.apply(newItems, _toConsumableArray(list.items));
+          newItems.push.apply(newItems, _toConsumableArray(spotifyData.items));
           _this.searchData = newItems;
         } else {
-          _this.pagesLoaded = 0;
-          _this.totalPages = list.total;
-          _this.searchData = list.items;
+          _this.searchData = spotifyData.items;
         }
       })["catch"](function (err) {
         console.log(err);
@@ -9100,13 +9104,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
     },
     paginationDataCall: function paginationDataCall() {
-      this.page += 1;
+      this.currentPage += 1;
       this.fetchSpotifyData(this.lastSearchInput, this.lastType, true, false);
     }
   },
   computed: {
     offset: function offset() {
-      return this.pagesLoaded * 20;
+      return this.currentPage * 20;
     },
     searchDataKey: function searchDataKey() {
       var type = this.lastType + 's';
@@ -9190,12 +9194,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     bestImage: function bestImage() {
-      var imgToReturn = this.images[0];
-      this.images.forEach(function (img) {
-        if (img.height > 500 && img.height < 700) {
-          imgToReturn = img;
-        }
-      });
+      var imgToReturn = this.images[0]; // this.images.forEach(img => {
+      //     if (img.height > 500 && img.height < 700) {
+      //         imgToReturn = img
+      //     }
+      // });
+
       return imgToReturn;
     }
   }
@@ -9435,15 +9439,11 @@ var render = function render() {
       data: _vm.searchData,
       type: _vm.lastType
     }
-  }), _vm._v(" "), _c("pagination-footer", {
-    attrs: {
-      totalPages: _vm.totalPages,
-      pagesLoaded: _vm.pagesLoaded
-    },
+  }), _vm._v(" "), _vm.nextPageExists ? _c("pagination-footer", {
     on: {
       handlePaginationDataCall: _vm.paginationDataCall
     }
-  })], 1) : _c("p", {
+  }) : _vm._e()], 1) : _c("p", {
     staticClass: "no_data_message"
   }, [_vm._v(" No Data for this search :(")])]) : _vm._e(), _vm._v(" "), _c("pulse-loader", {
     staticClass: "loader",
@@ -9478,7 +9478,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "button_container"
-  }, [_vm.pagesLoaded < _vm.totalPages ? _c("button", {
+  }, [_c("button", {
     staticClass: "btn btn-outline-secondary",
     attrs: {
       type: "button"
@@ -9488,7 +9488,7 @@ var render = function render() {
         return _vm.handleButtonClick("next");
       }
     }
-  }, [_vm._v("More")]) : _vm._e()]);
+  }, [_vm._v("More")])]);
 };
 
 var staticRenderFns = [];
