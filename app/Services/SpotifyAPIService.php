@@ -8,15 +8,9 @@ use GuzzleHttp\Client;
  */
 class SpotifyAPIService
 {
-    public function __construct()
-    {
-        $this->client_id = config('app.client_id');
-        $this->client_secret = config('app.client_secret');
-    }
 
     public function fetchSpotifySearchData(string $search_string, string $type, int $offset = 0)
     {
-        $credentials = base64_encode($this->client_id. ':' .$this->client_secret);
         $client = new Client();
         $token = $this->fetchSpotifyAPIToken();
         $data = $client->request('GET', "https://api.spotify.com/v1/search", [
@@ -37,7 +31,9 @@ class SpotifyAPIService
 
     private function fetchSpotifyAPIToken() 
     {
-        $credentials = base64_encode($this->client_id. ':' .$this->client_secret);
+        $client_id = config('app.client_id');
+        $client_secret = config('app.client_secret');
+        $credentials = base64_encode($client_id. ':' .$client_secret);
         $client = new Client();
         $res = $client->request('POST', "https://accounts.spotify.com/api/token", [
             'form_params' => 

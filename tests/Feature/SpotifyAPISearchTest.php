@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Config;
+
 
 class SpotifyAPISearchTest extends TestCase
 {
@@ -38,7 +40,7 @@ class SpotifyAPISearchTest extends TestCase
         $response->assertJsonPath('artists.offset', 0);
     }
     
-    /** @test */
+     /** @test */
     public function search_brings_back_correct_offset_data()
     {
         $params = ['search_string' => 'Oasis', 'type' => 'artist', 'offset' => 10];
@@ -53,5 +55,14 @@ class SpotifyAPISearchTest extends TestCase
         $response = $this->get(route('search', $params , ['params' => ['test' => 'test']]));
         $response->assertSessionHasErrors(['type', 'offset']);
     }
-    
+
+    /** @test */
+    public function search_returns_400_when_missing_env_keys()
+    {
+        Config::set('app.client_id', 1);
+        $params = ['search_string' => 'Oasis', 'type' => 'artist'];
+        $response = $this->get(route('search', $params , ['params' => $params]));
+        $response->assertStatus(400);
+    }
+     
 }

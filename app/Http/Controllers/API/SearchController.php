@@ -22,11 +22,16 @@ class SearchController extends Controller
             'offset' => 'numeric',
         ]);
 
-        $offset = $request->get('offset') ?: 0;
-        $type = $request['type'];
-  
-        $data = $this->SpotifyAPIService->fetchSpotifySearchData($search_string, $type, $offset);
-
-        return response($data, 200);
+        try {
+            $offset = $request->get('offset') ?: 0;
+            $type = $request['type'];
+            $data = $this->SpotifyAPIService->fetchSpotifySearchData($search_string, $type, $offset);
+            return response($data, 200);
+        } catch(\Exception $e) {
+            $response = $e->getResponse();
+            $code = $e->getCode();
+            $responseBody = $response->getBody()->getContents();
+            return response($responseBody, $code);
+        }
     }
 }

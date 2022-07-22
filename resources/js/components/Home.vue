@@ -16,6 +16,7 @@
             <p v-else class="no_data_message"> No Data for this search :(</p>
         </main>
         <pulse-loader class="loader" color='#1DB954' :loading="loading"></pulse-loader>
+        <error-message v-if="error" :error="error"></error-message>
     </div>
 </template>
 
@@ -36,11 +37,13 @@ export default {
             lastSearchInput: null,
             totalPages: null,
             loading: false,
-            nextPageExists: false
+            nextPageExists: false,
+            error: null,
         }
     },
     methods: {
         fetchSpotifyData(searchInput, type, paginationCall = false, ) {
+            this.error = false
             this.lastType = type
             this.lastSearchInput = searchInput
             if (!paginationCall) {
@@ -64,8 +67,8 @@ export default {
                     } else {
                         this.searchData = spotifyData.items
                     }
-                }).catch((err)=>{
-                    console.log(err)
+                }).catch(({response})=>{
+                    this.error = response
                 }).finally(()=>{
                     this.loading = false
                 })
@@ -110,6 +113,16 @@ export default {
     .list_container {
         margin-top: 1rem;
         width: 100%;
+    }
+
+    .error_container {
+        margin-top: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .error_text {
+        color: red;
     }
 
      @media screen and (max-width: 576px) {
