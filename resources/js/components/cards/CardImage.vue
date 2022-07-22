@@ -21,7 +21,6 @@ export default {
                     imgToReturn = img
                 }
             });
-            console.log(imgToReturn.height)
             return imgToReturn
         }
     },

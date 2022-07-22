@@ -9200,7 +9200,6 @@ __webpack_require__.r(__webpack_exports__);
           imgToReturn = img;
         }
       });
-      console.log(imgToReturn.height);
       return imgToReturn;
     }
   }

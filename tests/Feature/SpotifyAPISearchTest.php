@@ -1,8 +1,6 @@
 <?php
 
-namespace Tests\Unit;
-use Illuminate\Testing\Fluent\AssertableJson;
-
+namespace Tests\Feature;
 use Tests\TestCase;
 
 class SearchTest extends TestCase
@@ -31,6 +29,7 @@ class SearchTest extends TestCase
         $response = $this->get(route('search', $params));
         $response->assertJsonStructure(['tracks']);
     }
+    
     /** @test */
     public function search_works_with_no_offset()
     {
