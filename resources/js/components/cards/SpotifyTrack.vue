@@ -1,7 +1,6 @@
 <template>
     <div>
-        <img v-if="item.album.images.length > 0" class="card-img-top image" :src="item.album.images[0].url" alt="search_result_image">
-        <img v-else class="card-img-top image" src="/storage/Image-Coming-Soon-Placeholder-600x600.png" alt="search_result_image">
+        <card-image :images="item.album.images"></card-image>
         <div class="card_content">
             <div class="card_title_container">
                 <h3 class="card_title">
@@ -25,7 +24,9 @@
 </template>
 
 <script>
+import cardImage from './CardImage.vue'
 export default {
+    components: {cardImage},
     props: ['item'],
 }
 </script>
@@ -34,5 +35,6 @@ export default {
  .preview_link {
     color: #1DB954;
     text-decoration: none;
+    font-size: 1.1rem;
  }
 </style>
