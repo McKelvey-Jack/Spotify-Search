@@ -29,8 +29,7 @@
         padding: 1rem;
     }
     .card_content_section {
-        display: grid;
-        grid-template-columns: 1fr 8fr;
+        display: flex;
         align-items: baseline;
         p {
             margin: 0;
@@ -38,6 +37,7 @@
      }
     .list_label {
         font-weight: 800;
+        margin-right: .5rem;
         .list_icon {
             color: #1DB954;
         }

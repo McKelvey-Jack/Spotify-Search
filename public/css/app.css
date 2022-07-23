@@ -10275,8 +10275,7 @@ textarea.form-control-lg {
   padding: 1rem;
 }
 .card .card_content_section {
-  display: grid;
-  grid-template-columns: 1fr 8fr;
+  display: flex;
   align-items: baseline;
 }
 .card .card_content_section p {
@@ -10284,6 +10283,7 @@ textarea.form-control-lg {
 }
 .card .list_label {
   font-weight: 800;
+  margin-right: 0.5rem;
 }
 .card .list_label .list_icon {
   color: #1DB954;

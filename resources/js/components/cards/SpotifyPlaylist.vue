@@ -26,5 +26,6 @@ export default {
 
  .playlist_description {
     font-style: italic;
+    word-break: break-all;
  }
 </style>

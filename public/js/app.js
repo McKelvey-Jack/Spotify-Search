@@ -5483,9 +5483,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         spotifyData.next ? _this.nextPageExists = true : _this.nextPageExists = false;
 
         if (paginationCall) {
-          var newItems = _this.searchData;
-          newItems.push.apply(newItems, _toConsumableArray(spotifyData.items));
-          _this.searchData = newItems;
+          var _this$searchData;
+
+          (_this$searchData = _this.searchData).push.apply(_this$searchData, _toConsumableArray(spotifyData.items));
         } else {
           _this.searchData = spotifyData.items;
         }
@@ -11504,7 +11504,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.playlist_description[data-v-253516a5] {\n   font-style: italic;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.playlist_description[data-v-253516a5] {\n   font-style: italic;\n   word-break: break-all;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

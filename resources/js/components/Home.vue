@@ -61,9 +61,7 @@ export default {
                     const spotifyData = data[this.searchDataKey]
                     spotifyData.next ? this.nextPageExists = true : this.nextPageExists = false
                     if (paginationCall) {
-                        let newItems = this.searchData
-                        newItems.push(...spotifyData.items)
-                        this.searchData = newItems
+                        this.searchData.push(...spotifyData.items)
                     } else {
                         this.searchData = spotifyData.items
                     }
